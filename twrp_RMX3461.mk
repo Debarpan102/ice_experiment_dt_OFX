@@ -20,6 +20,11 @@ PRODUCT_NAME := twrp_RMX3461
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := realme 9 5G Speed Edition
 PRODUCT_MANUFACTURER := qualcomm
+PRODUCT_RELEASE_NAME := RMX3461
+PRODUCT_PLATFORM := lahaina
+
+# Default device path for tree
+DEVICE_PATH := device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)
 
 PRODUCT_GMS_CLIENTID_BASE := android-qualcomm
 
