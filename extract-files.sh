@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=lahaina
+DEVICE=RMX3461
 VENDOR=qualcomm
 
 # Load extract_utils and do some sanity checks
