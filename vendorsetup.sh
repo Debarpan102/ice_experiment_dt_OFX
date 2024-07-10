@@ -5,6 +5,5 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo omni_lahaina-user
-add_lunch_combo omni_lahaina-userdebug
-add_lunch_combo omni_lahaina-eng
+# For building with minimal manifest
+export ALLOW_MISSING_DEPENDENCIES=true
