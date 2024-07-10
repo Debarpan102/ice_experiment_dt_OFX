@@ -15,10 +15,10 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Inherit from lahaina device
 $(call inherit-product, device/qualcomm/lahaina/device.mk)
 
-PRODUCT_DEVICE := lahaina
-PRODUCT_NAME := omni_lahaina
-PRODUCT_BRAND := qti
-PRODUCT_MODEL := Lahaina for arm64
+PRODUCT_DEVICE := RMX3461
+PRODUCT_NAME := twrp_RMX3461
+PRODUCT_BRAND := realme
+PRODUCT_MODEL := realme 9 5G Speed Edition
 PRODUCT_MANUFACTURER := qualcomm
 
 PRODUCT_GMS_CLIENTID_BASE := android-qualcomm
