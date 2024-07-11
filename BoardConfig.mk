@@ -41,13 +41,14 @@ DEXPREOPT_GENERATE_APEX_IMAGE := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
 
 # Kernel
-
+BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 
 TARGET_KERNEL_ARCH := $(TARGET_ARCH)
-# BOARD_BOOTIMG_HEADER_VERSION := 3
-# BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_BOOTIMG_HEADER_VERSION := 3
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
 TARGET_KERNEL_CONFIG := RMX3461_defconfig
 TARGET_KERNEL_SOURCE := kernel/realme/RMX3461
@@ -64,7 +65,7 @@ BOARD_KERNEL_CMDLINE := \
     swiotlb=0 \
     loop.max_part=7 \
     cgroup.memory=nokmem,nosocket \
- #  firmware_class.path=/vendor/firware_mnt/image \
+    firmware_class.path=/vendor/firware_mnt/image \
     pcie_ports=compat \
     loop.max_part=7 \
     iptable_raw.raw_before_defrag=1 \
@@ -74,10 +75,8 @@ BOARD_KERNAL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := \
     --dtb $(DEVICE_PATH)/prebuilt/dtb \
-  # --board SRPUE26A001
-  # --kernel_offset 0x00008000 \
-  # --ramdisk_offset 0x02000000 \
-  # --dtb_offset 0x01f00000 \
+    --kernel_offset 0x00008000 \
+    --ramdisk_offset 0x01000000 \
     --header_version 3
 BOARD_ROOT_EXTRA_FOLDER := \
     carrier \
@@ -90,6 +89,8 @@ BOARD_ROOT_EXTRA_FOLDER := \
 # dtbo
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_PREBUILT_RECOVERY_DTBO := $(DEVICE_PATH)/prebuilt/dtbo.img
+BOARD_INCLUDE_DTB_IN_BOOTIMG :=true
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
@@ -105,17 +106,37 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # Partitions
+BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 201326592
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 201326592
+BOARD_DTBOIMG_PARTITION_SIZE := 25165824
+
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
+
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_ODM := odm
+
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
+
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+
 BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
-BOARD_SUPER_PARTITION_GROUPS := qualcomm_dynamic_partitions
-BOARD_QUALCOMM_DYNAMIC_PARTITIONS_PARTITION_LIST := system system system_ext system_ext product product vendor vendor odm odm my_product my_product my_company my_company my_carrier my_carrier my_region my_region my_bigball my_bigball my_heytap my_heytap my_stock my_stock my_preload my_preload my_manifest my_manifest my_engineering my_engineering
-BOARD_QUALCOMM_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
+BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system system system_ext system_ext product product vendor vendor odm odm my_product my_product my_company my_company my_carrier my_carrier my_region my_region my_bigball my_bigball my_heytap my_heytap my_stock my_stock my_preload my_preload my_manifest my_manifest my_engineering my_engineering
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
 TARGET_BOARD_PLATFORM := lahaina
@@ -126,6 +147,8 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 RECOVERY_SDCARD_ON_DATA := true
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
@@ -136,6 +159,9 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 # Encryption
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_USE_FSCRYPT_POLICY := 1
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
