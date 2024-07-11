@@ -43,11 +43,53 @@ TARGET_BOOTLOADER_BOARD_NAME := lahaina
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_BOOTIMG_HEADER_VERSION := 3
-BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+
+
+TARGET_KERNEL_ARCH := $(TARGET_ARCH)
+# BOARD_BOOTIMG_HEADER_VERSION := 3
+# BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_CONFIG := lahaina_defconfig
-TARGET_KERNEL_SOURCE := kernel/qualcomm/lahaina
+TARGET_KERNEL_CONFIG := RMX3461_defconfig
+TARGET_KERNEL_SOURCE := kernel/realme/RMX3461
+
+BOARD_KERNEL_CMDLINE := \
+    console=null \
+    androidboot.hardware=qcom \
+    androidboot.memcrg=1 \
+    lpm_levels.sleep_disabled=1 \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    androidboot.usbcontroller=a600000.dwc \
+    swiotlb=0 \
+    loop.max_part=7 \
+    cgroup.memory=nokmem,nosocket \
+ #  firmware_class.path=/vendor/firware_mnt/image \
+    pcie_ports=compat \
+    loop.max_part=7 \
+    iptable_raw.raw_before_defrag=1 \
+    ip6table_raw.raw_before_defrag=1 \
+    print.devkmsg=on
+BOARD_KERNAL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_MKBOOTIMG_ARGS := \
+    --dtb $(DEVICE_PATH)/prebuilt/dtb \
+  # --board SRPUE26A001
+  # --kernel_offset 0x00008000 \
+  # --ramdisk_offset 0x02000000 \
+  # --dtb_offset 0x01f00000 \
+    --header_version 3
+BOARD_ROOT_EXTRA_FOLDER := \
+    carrier \
+    efs \
+    omr \
+    optics \
+    prism \
+    spu
+
+# dtbo
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_PREBUILT_RECOVERY_DTBO := $(DEVICE_PATH)/prebuilt/dtbo.img
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
@@ -70,6 +112,7 @@ BOARD_QUALCOMM_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Platform
 TARGET_BOARD_PLATFORM := lahaina
+QCOM_BOARD_PLATFORMS += $(TARGET_BOARD_PLATFORM)
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
