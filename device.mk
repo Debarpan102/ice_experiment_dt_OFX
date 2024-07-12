@@ -35,12 +35,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bootctrl.lahaina
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.RMX3461 \
-    libgptutils \
-    libz \
-    libcutils
-
 PRODUCT_PACKAGES += \
     otapreopt_script \
     cppreopts.sh \
