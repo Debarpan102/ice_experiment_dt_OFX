@@ -76,7 +76,6 @@ BOARD_KERNEL_CMDLINE := \
 BOARD_KERNAL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_MKBOOTIMG_ARGS := \
-    --dtb $(DEVICE_PATH)/prebuilt/dtb \
     --kernel_offset 0x00008000 \
     --ramdisk_offset 0x01000000 \
     --header_version 3
