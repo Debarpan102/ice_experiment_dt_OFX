@@ -1,0 +1,8 @@
+[
+    {
+        "remote"        :   "Debarpan102",
+        "repository"    :   "Twrpdt_ice",
+        "target_path"   :   "device/realme/RMX3461",
+        "revision"      :   "main"
+    }
+]
