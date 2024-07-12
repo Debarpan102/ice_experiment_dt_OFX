@@ -36,7 +36,7 @@ PRODUCT_PACKAGES += \
     bootctrl.lahaina
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.lahaina \
+    bootctrl.RMX3461 \
     libgptutils \
     libz \
     libcutils
