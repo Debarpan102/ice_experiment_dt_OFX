@@ -183,6 +183,7 @@ TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 
 # Kernel module loading for touch, battery etc
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/prebuilt/modules)\")
 
 # Add properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
