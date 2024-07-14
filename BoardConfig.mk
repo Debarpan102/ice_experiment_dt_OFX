@@ -226,7 +226,6 @@ TW_INCLUDE_NTFS_3G := true
 
 # For additional flags
 TW_HAS_NO_RECOVERY_PARTITION := true
-TW_HAS_NO_BOOT_PARTITION := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_FRAMERATE := 60
 
