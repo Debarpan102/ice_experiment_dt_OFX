@@ -190,7 +190,7 @@ TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/prebuilt/modu
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Fixes wrong theme color
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 
 # Fstab
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
