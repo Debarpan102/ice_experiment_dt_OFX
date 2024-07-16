@@ -244,9 +244,6 @@ TW_HAS_EDL_MODE := true
 # Fastbootd
 TW_INCLUDE_FASTBOOTD := true
 
-# Toolbox binaries
-TW_USE_TOOLBOX := true
-
 # Python binary
 TW_INCLUDE_PYTHON := true
 
